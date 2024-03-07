@@ -113,6 +113,7 @@ mixin _HomePageMixin on State<MyHomePage> {
     toLanguage = to != null ? to.split(',')[1] : '';
     dynamic supportLan = await flutterTtsoutput.getLanguages;
     String? selectedType;
+    String? selectInType;
     for (var sup in supportLan) {
       if (sup.toString().toLowerCase().startsWith(glotran.to)) {
         selectedType = sup;
@@ -121,7 +122,15 @@ mixin _HomePageMixin on State<MyHomePage> {
     if (selectedType != null) {
       outputlanguage = selectedType;
       flutterTtsoutput.setLanguage(outputlanguage!);
-      setState(() {});
     }
+    for (var sup in supportLan) {
+      if (sup.toString().toLowerCase().startsWith(glotran.from)) {
+        selectInType = sup;
+      }
+    }
+    if (selectInType != null) {
+      outputlanguage = selectInType;
+    }
+    setState(() {});
   }
 }

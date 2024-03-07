@@ -69,6 +69,8 @@ class _MyHomePageState extends State<MyHomePage> with _HomePageMixin {
                                 from: glotran.from,
                                 to: glotran.to);
                             _translateData.outputData = translation.toString();
+                          }else{
+                            _translateData.outputData='';
                           }
                           editing = false;
                           setState(() {});
@@ -76,14 +78,49 @@ class _MyHomePageState extends State<MyHomePage> with _HomePageMixin {
                       },
                     ),
                     Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                                onPressed: () {
-                                  Clipboard.setData(ClipboardData(
-                                      text: inpoutText.text));
-                                },
-                                icon: const Icon(Icons.copy)),
+                      alignment: Alignment.topRight,
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        width: 40,
+                        child: ListView(
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      inpoutText.text = '';
+                                      _translateData.outputData = '';
+                                      setState(() {});
+                                    },
+                                    icon: const Icon(Icons.close)),
+                                Visibility(
+                                  visible: inputlanguage != null
+                                      ? inputlanguage!
+                                          .toLowerCase()
+                                          .startsWith(glotran.from)
+                                      : false,
+                                  child: IconButton(
+                                      icon: const Icon(Icons.volume_up),
+                                      onPressed: () => {
+                                            flutterTtsoutput
+                                                .setLanguage(inputlanguage!),
+                                            _translateoutput(inpoutText.text)
+                                          }),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      Clipboard.setData(
+                                          ClipboardData(text: inpoutText.text));
+                                    },
+                                    icon: const Icon(Icons.copy)),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
+                    ),
                   ],
                 ),
               ),
@@ -106,6 +143,16 @@ class _MyHomePageState extends State<MyHomePage> with _HomePageMixin {
                           NotificationController.createNewNotification();
                           inpoutText.text='';
                           _translateData.outputData = '';
+                          dynamic supportLan =await flutterTtsoutput.getLanguages;
+                          String? selectedType;
+                          for (var sup in supportLan) {
+                            if (sup.toString().toLowerCase().startsWith(value.toString().split(',')[0])) {
+                              selectedType=sup;
+                            }
+                          }
+                          if (selectedType != null) {
+                            inputlanguage = selectedType;
+                          }
                           setState(() {});
                         }
                       });
@@ -140,14 +187,22 @@ class _MyHomePageState extends State<MyHomePage> with _HomePageMixin {
 
                     dynamic supportLan = await flutterTtsoutput.getLanguages;
                     String? selectedType;
+                    String? selectInType;
                     for (var sup in supportLan) {
                       if (sup.toString().toLowerCase().startsWith(glotran.to)) {
                         selectedType = sup;
                       }
                     }
+                    for (var sup in supportLan) {
+                      if (sup.toString().toLowerCase().startsWith(glotran.from)) {
+                        selectInType = sup;
+                      }
+                    }
+                    if (selectInType != null) {
+                      inputlanguage=selectInType;
+                    }
                     if (selectedType != null) {
                       outputlanguage = selectedType;
-                      flutterTtsoutput.setLanguage(outputlanguage!);
                     }
                     NotificationController.createNewNotification();
                     setState(() {});
@@ -197,41 +252,55 @@ class _MyHomePageState extends State<MyHomePage> with _HomePageMixin {
                     ))
               ],
             ),
-            Container(
-              margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.deepPurple)),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 15, 8, 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 15, 8, 0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(0),
+              fixedSize: Size(MediaQuery.of(context).size.width - 30,  MediaQuery.of(context).size.height * 0.15),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15))
+                ),
+                onPressed: (){},
+                child: Stack(
                     children: [
                       editing
                           ? Text(
                               'Editing...',
                               style: DTextStyle.translateData,
                             )
-                          : Text(
-                              _translateData.outputData!,
-                              style: DTextStyle.translateData,
+                          : SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.17,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView(
+                              children: [
+                                Text(
+                                    _translateData.outputData!,
+                                    style: DTextStyle.translateData,
+                                  ),
+                              ],
                             ),
+                          ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Visibility(
-                              visible: outputlanguage != null ? outputlanguage!.toLowerCase().startsWith(glotran.to) : false,
-                              child: IconButton(
-                                  icon: const Icon(Icons.volume_up),
-                                  onPressed: () =>
-                                      {_translateoutput(_translateData.outputData!)}),
-                            ),
+                            visible: outputlanguage != null
+                                ? outputlanguage!
+                                    .toLowerCase()
+                                    .startsWith(glotran.to)
+                                : false,
+                            child: IconButton(
+                                icon: const Icon(Icons.volume_up),
+                                onPressed: () => {
+                                      flutterTtsoutput
+                                          .setLanguage(outputlanguage!),
+                                      _translateoutput(
+                                          _translateData.outputData!)
+                                    }),
+                          ),
                             IconButton(
                                 onPressed: () {
                                   Clipboard.setData(ClipboardData(
@@ -242,8 +311,19 @@ class _MyHomePageState extends State<MyHomePage> with _HomePageMixin {
                         ),
                       )
                     ],
-                  )),
+                  ),
+              ),
             ),
+            // Container(
+            //   margin: const EdgeInsets.all(10),
+            //   height: MediaQuery.of(context).size.height * 0.15,
+            //   width: MediaQuery.of(context).size.width,
+            //   decoration: BoxDecoration(
+            //       color: Colors.blue,
+            //       borderRadius: BorderRadius.circular(30),
+            //       border: Border.all(color: Colors.deepPurple)),
+            //   child: 
+            // ),
             const Column(
               children: [Text('History')],
             ),
