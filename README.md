@@ -1,4 +1,4 @@
-# Multi-Lingua
+# Multi-Langua
 Flutter Translator, ChatGPT Chatbot integration, Chat translation, and Chat and Text Multilanguage Speaking. 
 
 **Clone the repository:**
