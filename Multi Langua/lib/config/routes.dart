@@ -1,5 +1,5 @@
-import 'package:dict/ui/pages/language_list_page.dart';
-import 'package:dict/ui/pages/my_home_page.dart';
+import 'package:dict/ui/pages/home/my_home_page.dart';
+import 'package:dict/ui/pages/languages/language_list_page.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

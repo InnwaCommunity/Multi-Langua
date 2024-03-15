@@ -1,7 +1,7 @@
-part of '../my_home_page.dart';
 
-mixin _HomePageMixin on State<MyHomePage> {
-  TextEditingController inpoutText=TextEditingController();
+part of '../translate_page.dart';
+mixin _TranslatePageMixin on State<TranslatePage> {
+   TextEditingController inpoutText=TextEditingController();
   final TranslateData _translateData= TranslateData(inputData: '', outputData: '');
   late FlutterTts flutterTtsoutput;
   Timer? debounce;
@@ -12,9 +12,10 @@ mixin _HomePageMixin on State<MyHomePage> {
   String? outputlanguage;
   String? inputlanguage;
   String? engine;
-  double volume = 0.5;
-  double pitch = 1.0;
+  double volume = 1;
+  double pitch = 0.5;
   double rate = 0.5;
+  String voice= 'en-us-x-sfg#male_1-local';
   bool isCurrentLanguageInstalled = false;
 
 
@@ -34,6 +35,9 @@ mixin _HomePageMixin on State<MyHomePage> {
     initTts();
     super.initState();
   }
+
+  ///to change voice
+  ///https://github.com/dlutton/flutter_tts/issues/247#issuecomment-1984430294
   
   initTts() {
     flutterTtsoutput = FlutterTts();
@@ -91,6 +95,7 @@ mixin _HomePageMixin on State<MyHomePage> {
     });
   }
   Future _translateoutput(String text) async {
+    await flutterTtsoutput.setVoice({'name': voice, 'locale': 'en-US'});
     await flutterTtsoutput.setVolume(volume);
     await flutterTtsoutput.setSpeechRate(rate);
     await flutterTtsoutput.setPitch(pitch);
@@ -129,7 +134,7 @@ mixin _HomePageMixin on State<MyHomePage> {
       }
     }
     if (selectInType != null) {
-      outputlanguage = selectInType;
+      inputlanguage = selectInType;
     }
     setState(() {});
   }

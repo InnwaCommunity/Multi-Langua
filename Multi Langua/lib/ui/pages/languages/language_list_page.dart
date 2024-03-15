@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dict/model/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 part 'mixin/language_list_page_mixin.dart';
 
 class LanguageListPage extends StatefulWidget {
@@ -50,7 +51,7 @@ class _LanguageListPageState extends State<LanguageListPage>
         Container(
           height: 300,
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.blue,
           ),
