@@ -10,4 +10,6 @@ Flutter Translator, ChatGPT Chatbot integration, Chat translation, and Chat and 
 **Features**
 - Asking The Meaning From Notifications
 - Multi Language Translation
+- Listening
+- Reading
 - Multi Lanugage Speaking
