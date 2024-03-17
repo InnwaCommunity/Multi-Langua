@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class DTextStyle{
   static TextStyle translateCountryName= const TextStyle(
     fontSize: 23,
+    color: Colors.white,
     fontWeight: FontWeight.normal,
     overflow: TextOverflow.ellipsis
   );

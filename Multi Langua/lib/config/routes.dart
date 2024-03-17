@@ -1,5 +1,7 @@
+import 'package:dict/model/listening_question.dart';
 import 'package:dict/ui/pages/home/my_home_page.dart';
 import 'package:dict/ui/pages/languages/language_list_page.dart';
+import 'package:dict/ui/pages/listen_result_page/listen_result_page.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -11,6 +13,9 @@ class Routes {
 
       case LanguageListPage.route:
         return makeRoute(LanguageListPage(selectedCode: argument as String,), settings);
+
+      case ListenResultPage.route:
+      return makeRoute(ListenResultPage(listenQuestlist: argument as List<ListenQuest>,), settings);
     }
     return null;
   }

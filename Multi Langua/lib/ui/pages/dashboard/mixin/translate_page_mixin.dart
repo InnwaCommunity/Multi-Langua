@@ -15,7 +15,7 @@ mixin _TranslatePageMixin on State<TranslatePage> {
   double volume = 1;
   double pitch = 0.5;
   double rate = 0.5;
-  String voice= 'en-us-x-sfg#male_1-local';
+  // String voice= 'en-us-x-sfg#male_1-local';
   bool isCurrentLanguageInstalled = false;
 
 
@@ -95,7 +95,7 @@ mixin _TranslatePageMixin on State<TranslatePage> {
     });
   }
   Future _translateoutput(String text) async {
-    await flutterTtsoutput.setVoice({'name': voice, 'locale': 'en-US'});
+    // await flutterTtsoutput.setVoice({'name': voice, 'locale': 'en-US'});
     await flutterTtsoutput.setVolume(volume);
     await flutterTtsoutput.setSpeechRate(rate);
     await flutterTtsoutput.setPitch(pitch);

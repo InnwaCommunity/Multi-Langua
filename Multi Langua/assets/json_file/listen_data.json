@@ -1,0 +1,77 @@
+[
+    {
+        "V1": "That exam was just awful.",
+        "V2": "Oh,it could have been worse",
+        "V3": "What does the woman mean?",
+        "P1": 0.5,
+        "P2": 1.0,
+        "P3": 1.3,
+        "Answer" : {
+            "A": "The exam was really awful",
+            "B": "It was the worst exam she had ever seen.",
+            "C": "It couldn't have been more difficult.",
+            "D": "It wasn't that hard.",
+            "CA": "It wasn't that hard."
+            }
+    },
+    {
+        "V1": "I've always wanted to visit Hawaii with you",
+        "V2": "Why not next month",
+        "V3": "What does the woman mean?",
+        "P1": 0.5,
+        "P2": 1.0,
+        "P3": 1.3,
+        "Answer" : {
+            "A": "Next month isn't a good time for the trip.",
+            "B": "She doesn't want to go Hawaii.",
+            "C": "She suggests taking the trip next month.",
+            "D": "She's curious about why he doesn't want to go.",
+            "CA": "She suggests taking the trip next month."
+            }
+    },
+    {
+        "V1": "Billy really made a big mistake this time.",
+        "V2": "Yes,he forgot to turn in his research paper.",
+        "V3": "What does the woman say about Billy?",
+        "P1": 0.5,
+        "P2": 1.0,
+        "P3": 1.3,
+        "Answer" : {
+            "A": "It was the first time he make a mistake.",
+            "B": "He forgot to write his paper.",
+            "C": "He turned in the paper in the wrong place.",
+            "D": "He didn't remember to submit his assignment.",
+            "CA": "He didn't remember to submit his assignment."
+            }
+    },
+    {
+        "V1": "Why is Barbara feeling so happy?",
+        "V2": "She just started working in a real estate agency.",
+        "V3": "What does the man say about Barbara?",
+        "P1": 0.5,
+        "P2": 1.0,
+        "P3": 1.3,
+        "Answer" : {
+            "A": "She always liked her work in real estate.",
+            "B": "She began a new job.",
+            "C": "She just bought some real estate.",
+            "D": "She bought a real estate agency.",
+            "CA": "She began a new job."
+            }
+    },
+    {
+        "V1": "Why couldn't Mark come with us?",
+        "V2": "He was searching for a new apartment.",
+        "V3": "What does the woman say about Mark?",
+        "P1": 0.5,
+        "P2": 1.0,
+        "P3": 1.3,
+        "Answer" : {
+            "A": "He was in the department office.",
+            "B": "He was looking for a place to live.",
+            "C": "He was working on his research project.",
+            "D": "He had an appointment at church.",
+            "CA": "He was looking for a place to live."
+            }
+    }
+]

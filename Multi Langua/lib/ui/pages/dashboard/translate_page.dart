@@ -30,8 +30,8 @@ class _TranslatePageState extends State<TranslatePage> with _TranslatePageMixin 
     return SingleChildScrollView(
         child: Container(
           decoration: const BoxDecoration(
-          color: Colors.blue,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+          color: Colors.deepPurple,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -210,7 +210,7 @@ class _TranslatePageState extends State<TranslatePage> with _TranslatePageMixin 
                       setState(() {});
                     },
                     icon: const Icon(
-                      Icons.forward_rounded,
+                      Icons.forward_rounded,color: Colors.white,
                     ),
                   ),
                   TextButton(
